@@ -48,9 +48,7 @@ app.post('/register', async (req, res) => {
   if (existingUser)
     return res.status(409).json({ message: 'User already exists' });
 
-  hashPassword(password, (err, hashedPassword) => {
-    if (err) return res.status(500).json({ message: 'Error hashing password' });
-  });
+    const hashedPassword = hashPassword(password); 
 
   users.push({ username, password: hashedPassword, role });
 
